@@ -2,6 +2,8 @@
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var sparkListener = require('./sparkListener').sparkListener;
+var sparkVisitor = require('./sparkVisitor').sparkVisitor;
+
 var grammarFileName = "spark.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
@@ -2313,6 +2315,14 @@ SingleStatementContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SingleStatementContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleStatement(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2376,6 +2386,14 @@ SingleExpressionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSingleExpression(this);
 	}
+};
+
+SingleExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2443,6 +2461,14 @@ SingleTableIdentifierContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SingleTableIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleTableIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2506,6 +2532,14 @@ SingleFunctionIdentifierContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSingleFunctionIdentifier(this);
 	}
+};
+
+SingleFunctionIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleFunctionIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2573,6 +2607,14 @@ SingleDataTypeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SingleDataTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleDataType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -2636,6 +2678,14 @@ SingleTableSchemaContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSingleTableSchema(this);
 	}
+};
+
+SingleTableSchemaContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleTableSchema(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2740,6 +2790,14 @@ ExplainContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ExplainContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitExplain(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function DropDatabaseContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -2791,6 +2849,14 @@ DropDatabaseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DropDatabaseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDropDatabase(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ResetConfigurationContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -2816,6 +2882,14 @@ ResetConfigurationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitResetConfiguration(this);
 	}
+};
+
+ResetConfigurationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitResetConfiguration(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -2861,6 +2935,14 @@ DescribeDatabaseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DescribeDatabaseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDescribeDatabase(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function AlterViewQueryContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -2904,6 +2986,14 @@ AlterViewQueryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AlterViewQueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAlterViewQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function UseContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -2934,6 +3024,14 @@ UseContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitUse(this);
 	}
+};
+
+UseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitUse(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3003,6 +3101,14 @@ CreateTempViewUsingContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateTempViewUsingContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateTempViewUsing(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RenameTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3059,6 +3165,14 @@ RenameTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+RenameTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRenameTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function FailNativeCommandContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3094,6 +3208,14 @@ FailNativeCommandContext.prototype.exitRule = function(listener) {
 	}
 };
 
+FailNativeCommandContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFailNativeCommand(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ClearCacheContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3123,6 +3245,14 @@ ClearCacheContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitClearCache(this);
 	}
+};
+
+ClearCacheContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitClearCache(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3178,6 +3308,14 @@ ShowTablesContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ShowTablesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowTables(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RecoverPartitionsContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3219,6 +3357,14 @@ RecoverPartitionsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRecoverPartitions(this);
 	}
+};
+
+RecoverPartitionsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRecoverPartitions(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3277,6 +3423,14 @@ RenameTablePartitionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+RenameTablePartitionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRenameTablePartition(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RepairTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3316,6 +3470,14 @@ RepairTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+RepairTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRepairTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RefreshResourceContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3345,6 +3507,14 @@ RefreshResourceContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRefreshResource(this);
 	}
+};
+
+RefreshResourceContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRefreshResource(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3384,6 +3554,14 @@ ShowCreateTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowCreateTable(this);
 	}
+};
+
+ShowCreateTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowCreateTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3448,6 +3626,14 @@ ShowColumnsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowColumns(this);
 	}
+};
+
+ShowColumnsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowColumns(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3527,6 +3713,14 @@ AddTablePartitionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AddTablePartitionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAddTablePartition(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RefreshTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3560,6 +3754,14 @@ RefreshTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRefreshTable(this);
 	}
+};
+
+RefreshTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRefreshTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3596,6 +3798,14 @@ ManageResourceContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitManageResource(this);
 	}
+};
+
+ManageResourceContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitManageResource(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3670,6 +3880,14 @@ CreateDatabaseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateDatabaseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateDatabase(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function AnalyzeContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3735,6 +3953,14 @@ AnalyzeContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitAnalyze(this);
 	}
+};
+
+AnalyzeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAnalyze(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -3913,6 +4139,14 @@ CreateHiveTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateHiveTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateHiveTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function CreateFunctionContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -3996,6 +4230,14 @@ CreateFunctionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateFunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateFunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ShowTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4057,6 +4299,14 @@ ShowTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ShowTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SetDatabasePropertiesContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4102,6 +4352,14 @@ SetDatabasePropertiesContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetDatabaseProperties(this);
 	}
+};
+
+SetDatabasePropertiesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetDatabaseProperties(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4267,6 +4525,14 @@ CreateTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function DescribeTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4321,6 +4587,14 @@ DescribeTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitDescribeTable(this);
 	}
+};
+
+DescribeTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDescribeTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4387,6 +4661,14 @@ CreateTableLikeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateTableLikeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateTableLike(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function UncacheTableContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4428,6 +4710,14 @@ UncacheTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitUncacheTable(this);
 	}
+};
+
+UncacheTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitUncacheTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4475,6 +4765,14 @@ DropFunctionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitDropFunction(this);
 	}
+};
+
+DropFunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDropFunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4541,6 +4839,14 @@ LoadDataContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LoadDataContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLoadData(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ShowPartitionsContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4578,6 +4884,14 @@ ShowPartitionsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowPartitions(this);
 	}
+};
+
+ShowPartitionsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowPartitions(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4621,6 +4935,14 @@ DescribeFunctionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitDescribeFunction(this);
 	}
+};
+
+DescribeFunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDescribeFunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4682,6 +5004,14 @@ ChangeColumnContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ChangeColumnContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitChangeColumn(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function StatementDefaultContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4707,6 +5037,14 @@ StatementDefaultContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitStatementDefault(this);
 	}
+};
+
+StatementDefaultContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitStatementDefault(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4746,6 +5084,14 @@ TruncateTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTruncateTable(this);
 	}
+};
+
+TruncateTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTruncateTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4809,6 +5155,14 @@ SetTableSerDeContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetTableSerDe(this);
 	}
+};
+
+SetTableSerDeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetTableSerDe(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -4914,6 +5268,14 @@ CreateViewContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateViewContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateView(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function DropTablePartitionsContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -4980,6 +5342,14 @@ DropTablePartitionsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DropTablePartitionsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDropTablePartitions(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SetConfigurationContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -5005,6 +5375,14 @@ SetConfigurationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetConfiguration(this);
 	}
+};
+
+SetConfigurationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetConfiguration(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5058,6 +5436,14 @@ DropTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DropTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDropTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ShowDatabasesContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -5096,6 +5482,14 @@ ShowDatabasesContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowDatabases(this);
 	}
+};
+
+ShowDatabasesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowDatabases(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5137,6 +5531,14 @@ ShowTblPropertiesContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowTblProperties(this);
 	}
+};
+
+ShowTblPropertiesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowTblProperties(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5198,6 +5600,14 @@ UnsetTablePropertiesContext.prototype.exitRule = function(listener) {
 	}
 };
 
+UnsetTablePropertiesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitUnsetTableProperties(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SetTableLocationContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -5243,6 +5653,14 @@ SetTableLocationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetTableLocation(this);
 	}
+};
+
+SetTableLocationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetTableLocation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5291,6 +5709,14 @@ ShowFunctionsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitShowFunctions(this);
 	}
+};
+
+ShowFunctionsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitShowFunctions(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5349,6 +5775,14 @@ CacheTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CacheTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCacheTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function AddTableColumnsContext(parser, ctx) {
 	StatementContext.call(this, parser);
@@ -5395,6 +5829,14 @@ AddTableColumnsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitAddTableColumns(this);
 	}
+};
+
+AddTableColumnsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAddTableColumns(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -5446,6 +5888,14 @@ SetTablePropertiesContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetTableProperties(this);
 	}
+};
+
+SetTablePropertiesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetTableProperties(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -7711,6 +8161,14 @@ UnsupportedHiveNativeCommandsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+UnsupportedHiveNativeCommandsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitUnsupportedHiveNativeCommands(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8305,6 +8763,14 @@ CreateTableHeaderContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CreateTableHeaderContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateTableHeader(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8433,6 +8899,14 @@ BucketSpecContext.prototype.exitRule = function(listener) {
 	}
 };
 
+BucketSpecContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitBucketSpec(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8547,6 +9021,14 @@ SkewSpecContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SkewSpecContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSkewSpec(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8643,6 +9125,14 @@ LocationSpecContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LocationSpecContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLocationSpec(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -8706,6 +9196,14 @@ QueryContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitQuery(this);
 	}
+};
+
+QueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -8818,6 +9316,14 @@ InsertOverwriteHiveDirContext.prototype.exitRule = function(listener) {
 	}
 };
 
+InsertOverwriteHiveDirContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInsertOverwriteHiveDir(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function InsertOverwriteDirContext(parser, ctx) {
 	InsertIntoContext.call(this, parser);
@@ -8875,6 +9381,14 @@ InsertOverwriteDirContext.prototype.exitRule = function(listener) {
 	}
 };
 
+InsertOverwriteDirContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInsertOverwriteDir(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function InsertOverwriteTableContext(parser, ctx) {
 	InsertIntoContext.call(this, parser);
@@ -8930,6 +9444,14 @@ InsertOverwriteTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+InsertOverwriteTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInsertOverwriteTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function InsertIntoTableContext(parser, ctx) {
 	InsertIntoContext.call(this, parser);
@@ -8971,6 +9493,14 @@ InsertIntoTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitInsertIntoTable(this);
 	}
+};
+
+InsertIntoTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInsertIntoTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -9174,6 +9704,14 @@ PartitionSpecLocationContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PartitionSpecLocationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPartitionSpecLocation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9251,6 +9789,14 @@ PartitionSpecContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitPartitionSpec(this);
 	}
+};
+
+PartitionSpecContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPartitionSpec(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -9339,6 +9885,14 @@ PartitionValContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PartitionValContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPartitionVal(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9423,6 +9977,14 @@ DescribeFuncNameContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitDescribeFuncName(this);
 	}
+};
+
+DescribeFuncNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDescribeFuncName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -9525,6 +10087,14 @@ DescribeColNameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DescribeColNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDescribeColName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9610,6 +10180,14 @@ CtesContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CtesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCtes(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9693,6 +10271,14 @@ NamedQueryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+NamedQueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNamedQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9771,6 +10357,14 @@ TableProviderContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TableProviderContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableProvider(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -9837,6 +10431,14 @@ TablePropertyListContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTablePropertyList(this);
 	}
+};
+
+TablePropertyListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTablePropertyList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -9925,6 +10527,14 @@ TablePropertyContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TablePropertyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableProperty(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -10010,6 +10620,14 @@ TablePropertyKeyContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTablePropertyKey(this);
 	}
+};
+
+TablePropertyKeyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTablePropertyKey(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -10320,6 +10938,14 @@ TablePropertyValueContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TablePropertyValueContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTablePropertyValue(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -10410,6 +11036,14 @@ ConstantListContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ConstantListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitConstantList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -10491,6 +11125,14 @@ NestedConstantListContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitNestedConstantList(this);
 	}
+};
+
+NestedConstantListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNestedConstantList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -10583,6 +11225,14 @@ CreateFileFormatContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitCreateFileFormat(this);
 	}
+};
+
+CreateFileFormatContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCreateFileFormat(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -10701,6 +11351,14 @@ TableFileFormatContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TableFileFormatContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableFileFormat(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function GenericFileFormatContext(parser, ctx) {
 	FileFormatContext.call(this, parser);
@@ -10726,6 +11384,14 @@ GenericFileFormatContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitGenericFileFormat(this);
 	}
+};
+
+GenericFileFormatContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitGenericFileFormat(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -10820,6 +11486,14 @@ StorageHandlerContext.prototype.exitRule = function(listener) {
 	}
 };
 
+StorageHandlerContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitStorageHandler(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -10893,6 +11567,14 @@ ResourceContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitResource(this);
 	}
+};
+
+ResourceContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitResource(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -10981,6 +11663,14 @@ SingleInsertQueryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SingleInsertQueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSingleInsertQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function MultiInsertQueryContext(parser, ctx) {
 	QueryNoWithContext.call(this, parser);
@@ -11017,6 +11707,14 @@ MultiInsertQueryContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitMultiInsertQuery(this);
 	}
+};
+
+MultiInsertQueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitMultiInsertQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -11177,6 +11875,14 @@ QueryOrganizationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitQueryOrganization(this);
 	}
+};
+
+QueryOrganizationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQueryOrganization(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -11380,6 +12086,14 @@ MultiInsertQueryBodyContext.prototype.exitRule = function(listener) {
 	}
 };
 
+MultiInsertQueryBodyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitMultiInsertQueryBody(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -11466,6 +12180,14 @@ QueryTermDefaultContext.prototype.exitRule = function(listener) {
 	}
 };
 
+QueryTermDefaultContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQueryTermDefault(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SetOperationContext(parser, ctx) {
 	QueryTermContext.call(this, parser);
@@ -11521,6 +12243,14 @@ SetOperationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSetOperation(this);
 	}
+};
+
+SetOperationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetOperation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -11722,6 +12452,14 @@ SubqueryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SubqueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSubquery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function QueryPrimaryDefaultContext(parser, ctx) {
 	QueryPrimaryContext.call(this, parser);
@@ -11749,6 +12487,14 @@ QueryPrimaryDefaultContext.prototype.exitRule = function(listener) {
 	}
 };
 
+QueryPrimaryDefaultContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQueryPrimaryDefault(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function InlineTableDefault1Context(parser, ctx) {
 	QueryPrimaryContext.call(this, parser);
@@ -11774,6 +12520,14 @@ InlineTableDefault1Context.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitInlineTableDefault1(this);
 	}
+};
+
+InlineTableDefault1Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInlineTableDefault1(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -11805,6 +12559,14 @@ TableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTable(this);
 	}
+};
+
+TableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -11921,6 +12683,14 @@ SortItemContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSortItem(this);
 	}
+};
+
+SortItemContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSortItem(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12145,6 +12915,14 @@ QuerySpecificationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitQuerySpecification(this);
 	}
+};
+
+QuerySpecificationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQuerySpecification(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12469,6 +13247,14 @@ HintContext.prototype.exitRule = function(listener) {
 	}
 };
 
+HintContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitHint(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -12565,6 +13351,14 @@ HintStatementContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitHintStatement(this);
 	}
+};
+
+HintStatementContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitHintStatement(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12685,6 +13479,14 @@ FromClauseContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitFromClause(this);
 	}
+};
+
+FromClauseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFromClause(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12831,6 +13633,14 @@ AggregationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitAggregation(this);
 	}
+};
+
+AggregationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAggregation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12999,6 +13809,14 @@ GroupingSetContext.prototype.exitRule = function(listener) {
 	}
 };
 
+GroupingSetContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitGroupingSet(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -13125,6 +13943,14 @@ PivotClauseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PivotClauseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPivotClause(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -13224,6 +14050,14 @@ PivotColumnContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitPivotColumn(this);
 	}
+};
+
+PivotColumnContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPivotColumn(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -13537,6 +14371,14 @@ PivotValueContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PivotValueContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPivotValue(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -13652,6 +14494,14 @@ LateralViewContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitLateralView(this);
 	}
+};
+
+LateralViewContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLateralView(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -13789,6 +14639,14 @@ SetQuantifierContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SetQuantifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSetQuantifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -13865,6 +14723,14 @@ RelationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRelation(this);
 	}
+};
+
+RelationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRelation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -13954,6 +14820,14 @@ JoinRelationContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitJoinRelation(this);
 	}
+};
+
+JoinRelationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitJoinRelation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14078,6 +14952,14 @@ JoinTypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitJoinType(this);
 	}
+};
+
+JoinTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitJoinType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14236,6 +15118,14 @@ JoinCriteriaContext.prototype.exitRule = function(listener) {
 	}
 };
 
+JoinCriteriaContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitJoinCriteria(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -14314,6 +15204,14 @@ SampleContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSample(this);
 	}
+};
+
+SampleContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSample(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14409,6 +15307,14 @@ SampleByRowsContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SampleByRowsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSampleByRows(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SampleByPercentileContext(parser, ctx) {
 	SampleMethodContext.call(this, parser);
@@ -14448,6 +15354,14 @@ SampleByPercentileContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSampleByPercentile(this);
 	}
+};
+
+SampleByPercentileContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSampleByPercentile(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14512,6 +15426,14 @@ SampleByBucketContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SampleByBucketContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSampleByBucket(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SampleByBytesContext(parser, ctx) {
 	SampleMethodContext.call(this, parser);
@@ -14538,6 +15460,14 @@ SampleByBytesContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSampleByBytes(this);
 	}
+};
+
+SampleByBytesContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSampleByBytes(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14684,6 +15614,14 @@ IdentifierListContext.prototype.exitRule = function(listener) {
 	}
 };
 
+IdentifierListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIdentifierList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -14752,6 +15690,14 @@ IdentifierSeqContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIdentifierSeq(this);
 	}
+};
+
+IdentifierSeqContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIdentifierSeq(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14833,6 +15779,14 @@ OrderedIdentifierListContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitOrderedIdentifierList(this);
 	}
+};
+
+OrderedIdentifierListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitOrderedIdentifierList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -14920,6 +15874,14 @@ OrderedIdentifierContext.prototype.exitRule = function(listener) {
 	}
 };
 
+OrderedIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitOrderedIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -15001,6 +15963,14 @@ IdentifierCommentListContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIdentifierCommentList(this);
 	}
+};
+
+IdentifierCommentListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIdentifierCommentList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15085,6 +16055,14 @@ IdentifierCommentContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIdentifierComment(this);
 	}
+};
+
+IdentifierCommentContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIdentifierComment(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15174,6 +16152,14 @@ TableValuedFunctionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TableValuedFunctionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableValuedFunction(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function InlineTableDefault2Context(parser, ctx) {
 	RelationPrimaryContext.call(this, parser);
@@ -15199,6 +16185,14 @@ InlineTableDefault2Context.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitInlineTableDefault2(this);
 	}
+};
+
+InlineTableDefault2Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInlineTableDefault2(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15236,6 +16230,14 @@ AliasedRelationContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AliasedRelationContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAliasedRelation(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function AliasedQueryContext(parser, ctx) {
 	RelationPrimaryContext.call(this, parser);
@@ -15271,6 +16273,14 @@ AliasedQueryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+AliasedQueryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitAliasedQuery(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function TableNameContext(parser, ctx) {
 	RelationPrimaryContext.call(this, parser);
@@ -15304,6 +16314,14 @@ TableNameContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTableName(this);
 	}
+};
+
+TableNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15454,6 +16472,14 @@ InlineTableContext.prototype.exitRule = function(listener) {
 	}
 };
 
+InlineTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInlineTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -15545,6 +16571,14 @@ FunctionTableContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitFunctionTable(this);
 	}
+};
+
+FunctionTableContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFunctionTable(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15639,6 +16673,14 @@ TableAliasContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitTableAlias(this);
 	}
+};
+
+TableAliasContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableAlias(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -15765,6 +16807,14 @@ RowFormatSerdeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+RowFormatSerdeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRowFormatSerde(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function RowFormatDelimitedContext(parser, ctx) {
 	RowFormatContext.call(this, parser);
@@ -15880,6 +16930,14 @@ RowFormatDelimitedContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRowFormatDelimited(this);
 	}
+};
+
+RowFormatDelimitedContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRowFormatDelimited(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -16073,6 +17131,14 @@ TableIdentifierContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TableIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTableIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -16149,6 +17215,14 @@ FunctionIdentifierContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitFunctionIdentifier(this);
 	}
+};
+
+FunctionIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFunctionIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -16230,6 +17304,14 @@ NamedExpressionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitNamedExpression(this);
 	}
+};
+
+NamedExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNamedExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -16537,6 +17619,14 @@ NamedExpressionSeqContext.prototype.exitRule = function(listener) {
 	}
 };
 
+NamedExpressionSeqContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNamedExpressionSeq(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -16609,6 +17699,14 @@ ExpressionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitExpression(this);
 	}
+};
+
+ExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -16690,6 +17788,14 @@ LogicalNotContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LogicalNotContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLogicalNot(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function PredicatedContext(parser, ctx) {
 	BooleanExpressionContext.call(this, parser);
@@ -16721,6 +17827,14 @@ PredicatedContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PredicatedContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPredicated(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ExistsContext(parser, ctx) {
 	BooleanExpressionContext.call(this, parser);
@@ -16750,6 +17864,14 @@ ExistsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitExists(this);
 	}
+};
+
+ExistsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitExists(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -16795,6 +17917,14 @@ LogicalBinaryContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitLogicalBinary(this);
 	}
+};
+
+LogicalBinaryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLogicalBinary(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17019,6 +18149,14 @@ PredicateContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PredicateContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPredicate(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -17229,6 +18367,14 @@ ValueExpressionDefaultContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ValueExpressionDefaultContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitValueExpressionDefault(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ComparisonContext(parser, ctx) {
 	ValueExpressionContext.call(this, parser);
@@ -17267,6 +18413,14 @@ ComparisonContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitComparison(this);
 	}
+};
+
+ComparisonContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitComparison(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17346,6 +18500,14 @@ ArithmeticBinaryContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ArithmeticBinaryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitArithmeticBinary(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ArithmeticUnaryContext(parser, ctx) {
 	ValueExpressionContext.call(this, parser);
@@ -17384,6 +18546,14 @@ ArithmeticUnaryContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitArithmeticUnary(this);
 	}
+};
+
+ArithmeticUnaryContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitArithmeticUnary(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17629,6 +18799,14 @@ StructContext.prototype.exitRule = function(listener) {
 	}
 };
 
+StructContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitStruct(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function DereferenceContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -17660,6 +18838,14 @@ DereferenceContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitDereference(this);
 	}
+};
+
+DereferenceContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDereference(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17721,6 +18907,14 @@ SimpleCaseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SimpleCaseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSimpleCase(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ColumnReferenceContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -17746,6 +18940,14 @@ ColumnReferenceContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitColumnReference(this);
 	}
+};
+
+ColumnReferenceContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitColumnReference(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17780,6 +18982,14 @@ RowConstructorContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitRowConstructor(this);
 	}
+};
+
+RowConstructorContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitRowConstructor(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17821,6 +19031,14 @@ LastContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LastContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLast(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function StarContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -17850,6 +19068,14 @@ StarContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitStar(this);
 	}
+};
+
+StarContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitStar(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17885,6 +19111,14 @@ SubscriptContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SubscriptContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSubscript(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SubqueryExpressionContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -17910,6 +19144,14 @@ SubqueryExpressionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSubqueryExpression(this);
 	}
+};
+
+SubqueryExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSubqueryExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -17951,6 +19193,14 @@ CastContext.prototype.exitRule = function(listener) {
 	}
 };
 
+CastContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitCast(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ConstantDefaultContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -17976,6 +19226,14 @@ ConstantDefaultContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitConstantDefault(this);
 	}
+};
+
+ConstantDefaultContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitConstantDefault(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -18017,6 +19275,14 @@ LambdaContext.prototype.exitRule = function(listener) {
 	}
 };
 
+LambdaContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitLambda(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function ParenthesizedExpressionContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -18042,6 +19308,14 @@ ParenthesizedExpressionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitParenthesizedExpression(this);
 	}
+};
+
+ParenthesizedExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitParenthesizedExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -18083,6 +19357,14 @@ ExtractContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitExtract(this);
 	}
+};
+
+ExtractContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitExtract(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -18154,6 +19436,14 @@ FunctionCallContext.prototype.exitRule = function(listener) {
 	}
 };
 
+FunctionCallContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFunctionCall(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SearchedCaseContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -18205,6 +19495,14 @@ SearchedCaseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+SearchedCaseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSearchedCase(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function PositionContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -18249,6 +19547,14 @@ PositionContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PositionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPosition(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function FirstContext(parser, ctx) {
 	PrimaryExpressionContext.call(this, parser);
@@ -18286,6 +19592,14 @@ FirstContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitFirst(this);
 	}
+};
+
+FirstContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFirst(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -18827,6 +20141,14 @@ NullLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+NullLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNullLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function StringLiteralContext(parser, ctx) {
 	ConstantContext.call(this, parser);
@@ -18862,6 +20184,14 @@ StringLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+StringLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitStringLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function TypeConstructorContext(parser, ctx) {
 	ConstantContext.call(this, parser);
@@ -18893,6 +20223,14 @@ TypeConstructorContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TypeConstructorContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTypeConstructor(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function IntervalLiteralContext(parser, ctx) {
 	ConstantContext.call(this, parser);
@@ -18918,6 +20256,14 @@ IntervalLiteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIntervalLiteral(this);
 	}
+};
+
+IntervalLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIntervalLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -18947,6 +20293,14 @@ NumericLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+NumericLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNumericLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function BooleanLiteralContext(parser, ctx) {
 	ConstantContext.call(this, parser);
@@ -18972,6 +20326,14 @@ BooleanLiteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitBooleanLiteral(this);
 	}
+};
+
+BooleanLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitBooleanLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -19120,6 +20482,14 @@ ComparisonOperatorContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ComparisonOperatorContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitComparisonOperator(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -19227,6 +20597,14 @@ ArithmeticOperatorContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ArithmeticOperatorContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitArithmeticOperator(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -19306,6 +20684,14 @@ PredicateOperatorContext.prototype.exitRule = function(listener) {
 	}
 };
 
+PredicateOperatorContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPredicateOperator(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -19375,6 +20761,14 @@ BooleanValueContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitBooleanValue(this);
 	}
+};
+
+BooleanValueContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitBooleanValue(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -19453,6 +20847,14 @@ IntervalContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitInterval(this);
 	}
+};
+
+IntervalContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitInterval(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -19545,6 +20947,14 @@ IntervalFieldContext.prototype.exitRule = function(listener) {
 	}
 };
 
+IntervalFieldContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIntervalField(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -19630,6 +21040,14 @@ IntervalValueContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIntervalValue(this);
 	}
+};
+
+IntervalValueContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIntervalValue(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -19736,6 +21154,14 @@ ColPositionContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitColPosition(this);
 	}
+};
+
+ColPositionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitColPosition(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -19857,6 +21283,14 @@ ComplexDataTypeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ComplexDataTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitComplexDataType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function PrimitiveDataTypeContext(parser, ctx) {
 	DataTypeContext.call(this, parser);
@@ -19894,6 +21328,14 @@ PrimitiveDataTypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitPrimitiveDataType(this);
 	}
+};
+
+PrimitiveDataTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitPrimitiveDataType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -20056,6 +21498,14 @@ ColTypeListContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ColTypeListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitColTypeList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -20142,6 +21592,14 @@ ColTypeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+ColTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitColType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -20218,6 +21676,14 @@ ComplexColTypeListContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitComplexColTypeList(this);
 	}
+};
+
+ComplexColTypeListContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitComplexColTypeList(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -20302,6 +21768,14 @@ ComplexColTypeContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitComplexColType(this);
 	}
+};
+
+ComplexColTypeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitComplexColType(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -20395,6 +21869,14 @@ WhenClauseContext.prototype.exitRule = function(listener) {
 	}
 };
 
+WhenClauseContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitWhenClause(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -20469,6 +21951,14 @@ WindowsContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitWindows(this);
 	}
+};
+
+WindowsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitWindows(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -20555,6 +22045,14 @@ NamedWindowContext.prototype.exitRule = function(listener) {
 	}
 };
 
+NamedWindowContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNamedWindow(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -20634,6 +22132,14 @@ WindowRefContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitWindowRef(this);
 	}
+};
+
+WindowRefContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitWindowRef(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -20717,6 +22223,14 @@ WindowDefContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitWindowDef(this);
 	}
+};
+
+WindowDefContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitWindowDef(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -21140,6 +22654,14 @@ WindowFrameContext.prototype.exitRule = function(listener) {
 	}
 };
 
+WindowFrameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitWindowFrame(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -21266,6 +22788,14 @@ FrameBoundContext.prototype.exitRule = function(listener) {
 	}
 };
 
+FrameBoundContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitFrameBound(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -21373,6 +22903,14 @@ QualifiedNameContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitQualifiedName(this);
 	}
+};
+
+QualifiedNameContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQualifiedName(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -21503,6 +23041,14 @@ IdentifierContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitIdentifier(this);
 	}
+};
+
+IdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -21856,6 +23402,14 @@ QuotedIdentifierAlternativeContext.prototype.exitRule = function(listener) {
 	}
 };
 
+QuotedIdentifierAlternativeContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQuotedIdentifierAlternative(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function UnquotedIdentifierContext(parser, ctx) {
 	StrictIdentifierContext.call(this, parser);
@@ -21885,6 +23439,14 @@ UnquotedIdentifierContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitUnquotedIdentifier(this);
 	}
+};
+
+UnquotedIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitUnquotedIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -22161,6 +23723,14 @@ QuotedIdentifierContext.prototype.exitRule = function(listener) {
 	}
 };
 
+QuotedIdentifierContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitQuotedIdentifier(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -22241,6 +23811,14 @@ DecimalLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DecimalLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDecimalLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function BigIntLiteralContext(parser, ctx) {
 	NumberContext.call(this, parser);
@@ -22270,6 +23848,14 @@ BigIntLiteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitBigIntLiteral(this);
 	}
+};
+
+BigIntLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitBigIntLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -22303,6 +23889,14 @@ TinyIntLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+TinyIntLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitTinyIntLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function BigDecimalLiteralContext(parser, ctx) {
 	NumberContext.call(this, parser);
@@ -22332,6 +23926,14 @@ BigDecimalLiteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitBigDecimalLiteral(this);
 	}
+};
+
+BigDecimalLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitBigDecimalLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -22365,6 +23967,14 @@ DoubleLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+DoubleLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitDoubleLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function IntegerLiteralContext(parser, ctx) {
 	NumberContext.call(this, parser);
@@ -22396,6 +24006,14 @@ IntegerLiteralContext.prototype.exitRule = function(listener) {
 	}
 };
 
+IntegerLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitIntegerLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 function SmallIntLiteralContext(parser, ctx) {
 	NumberContext.call(this, parser);
@@ -22425,6 +24043,14 @@ SmallIntLiteralContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitSmallIntLiteral(this);
 	}
+};
+
+SmallIntLiteralContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitSmallIntLiteral(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -23371,6 +24997,14 @@ NonReservedContext.prototype.exitRule = function(listener) {
     if(listener instanceof sparkListener ) {
         listener.exitNonReserved(this);
 	}
+};
+
+NonReservedContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof sparkVisitor ) {
+        return visitor.visitNonReserved(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 

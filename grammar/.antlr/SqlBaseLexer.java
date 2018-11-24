@@ -1,4 +1,4 @@
-// Generated from /Users/xuexiaokang/Documents/github/antlr-demo/grammar/spark.g4 by ANTLR 4.7.1
+// Generated from /Users/xuexiaokang/Documents/github/antlr-demo/grammar/sparkJava.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -220,7 +220,7 @@ public class SqlBaseLexer extends Lexer {
 	   * When false, INTERSECT is given the greater precedence over the other set
 	   * operations (UNION, EXCEPT and MINUS) as per the SQL standard.
 	   */
-	  this.legacy_setops_precedence_enbled = false;
+	  public boolean legacy_setops_precedence_enbled = false;
 
 	  /**
 	   * Verify whether current token is a valid decimal token (which contains dot).
@@ -234,8 +234,8 @@ public class SqlBaseLexer extends Lexer {
 	   * by a space. 34.E2 is a valid decimal token because it is followed by symbol '+'
 	   * which is not a digit or letter or underscore.
 	   */
-	  this.isValidDecimal=function() {
-	    var nextChar = _input.LA(1);
+	  public boolean isValidDecimal() {
+	    int nextChar = _input.LA(1);
 	    if (nextChar >= 'A' && nextChar <= 'Z' || nextChar >= '0' && nextChar <= '9' ||
 	      nextChar == '_') {
 	      return false;
@@ -251,7 +251,7 @@ public class SqlBaseLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "spark.g4"; }
+	public String getGrammarFileName() { return "sparkJava.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -283,21 +283,21 @@ public class SqlBaseLexer extends Lexer {
 	private boolean DECIMAL_VALUE_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return this.isValidDecimal();
+			return isValidDecimal();
 		}
 		return true;
 	}
 	private boolean DOUBLE_LITERAL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 1:
-			return this.isValidDecimal();
+			return isValidDecimal();
 		}
 		return true;
 	}
 	private boolean BIGDECIMAL_LITERAL_sempred(RuleContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 2:
-			return this.isValidDecimal();
+			return isValidDecimal();
 		}
 		return true;
 	}
