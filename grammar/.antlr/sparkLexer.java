@@ -220,7 +220,7 @@ public class sparkLexer extends Lexer {
 	   * When false, INTERSECT is given the greater precedence over the other set
 	   * operations (UNION, EXCEPT and MINUS) as per the SQL standard.
 	   */
-	  this.legacy_setops_precedence_enbled = false;
+	  sparkLexer.prototype.legacy_setops_precedence_enbled = false;
 
 	  /**
 	   * Verify whether current token is a valid decimal token (which contains dot).
@@ -234,8 +234,8 @@ public class sparkLexer extends Lexer {
 	   * by a space. 34.E2 is a valid decimal token because it is followed by symbol '+'
 	   * which is not a digit or letter or underscore.
 	   */
-	  this.isValidDecimal=function() {
-	    var nextChar = _input.LA(1);
+	  sparkLexer.prototype.isValidDecimal=function() {
+	    var nextChar = this._input.LA(1);
 	    if (nextChar >= 'A' && nextChar <= 'Z' || nextChar >= '0' && nextChar <= '9' ||
 	      nextChar == '_') {
 	      return false;

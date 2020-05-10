@@ -1,4 +1,4 @@
-// Generated from /Users/xuexiaokang/Documents/github/antlr-demo/grammar/hello.g4 by ANTLR 4.7.1
+// Generated from /Users/xuexiaokang/Documents/github/antlr-demo/grammar/helloParser.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -16,18 +16,17 @@ public class helloParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, ID=2, WS=3;
+		SHOW=1, DATABASES=2, SCHEMAS=3, LIKE=4, STRING=5;
 	public static final int
-		RULE_r = 0;
+		RULE_showDataBases = 0;
 	public static final String[] ruleNames = {
-		"r"
+		"showDataBases"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'hello'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, "ID", "WS"
+		null, "SHOW", "DATABASES", "SCHEMAS", "LIKE", "STRING"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -63,7 +62,7 @@ public class helloParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "hello.g4"; }
+	public String getGrammarFileName() { return "helloParser.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -78,24 +77,49 @@ public class helloParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class RContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(helloParser.ID, 0); }
-		public RContext(ParserRuleContext parent, int invokingState) {
+	public static class ShowDataBasesContext extends ParserRuleContext {
+		public TerminalNode SHOW() { return getToken(helloParser.SHOW, 0); }
+		public TerminalNode DATABASES() { return getToken(helloParser.DATABASES, 0); }
+		public TerminalNode SCHEMAS() { return getToken(helloParser.SCHEMAS, 0); }
+		public TerminalNode LIKE() { return getToken(helloParser.LIKE, 0); }
+		public TerminalNode STRING() { return getToken(helloParser.STRING, 0); }
+		public ShowDataBasesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_r; }
+		@Override public int getRuleIndex() { return RULE_showDataBases; }
 	}
 
-	public final RContext r() throws RecognitionException {
-		RContext _localctx = new RContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_r);
+	public final ShowDataBasesContext showDataBases() throws RecognitionException {
+		ShowDataBasesContext _localctx = new ShowDataBasesContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_showDataBases);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(2);
-			match(T__0);
+			match(SHOW);
 			setState(3);
-			match(ID);
+			_la = _input.LA(1);
+			if ( !(_la==DATABASES || _la==SCHEMAS) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			setState(6);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==LIKE) {
+				{
+				setState(4);
+				match(LIKE);
+				setState(5);
+				match(STRING);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -110,9 +134,10 @@ public class helloParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\5\b\4\2\t\2\3\2\3"+
-		"\2\3\2\3\2\2\2\3\2\2\2\2\6\2\4\3\2\2\2\4\5\7\3\2\2\5\6\7\4\2\2\6\3\3\2"+
-		"\2\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\13\4\2\t\2\3\2"+
+		"\3\2\3\2\3\2\5\2\t\n\2\3\2\2\2\3\2\2\3\3\2\4\5\2\n\2\4\3\2\2\2\4\5\7\3"+
+		"\2\2\5\b\t\2\2\2\6\7\7\6\2\2\7\t\7\7\2\2\b\6\3\2\2\2\b\t\3\2\2\2\t\3\3"+
+		"\2\2\2\3\b";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

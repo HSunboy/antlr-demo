@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "antlr4ts": "antlr4ts -visitor ./grammar/spark.g4 -o parser/spark/js",
+    "build:sql": "antlr4 -visitor ./grammar/sql.g4 -o test/sql -Dlanguage=JavaScript -Xexact-output-dir"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "antlr4": "^4.7.1"
+    "antlr4": "^4.7.2",
+    "antlr4ts": "^0.5.0-alpha.3"
+  },
+  "devDependencies": {
+    "antlr4ts-cli": "^0.5.0-alpha.3"
   }
 }
